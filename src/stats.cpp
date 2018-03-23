@@ -847,7 +847,13 @@ void Stats::reportHtmlContents(ofstream& ofs, string filteringType, string readN
         } else {
             count = mBaseContents['G' & 0x07] + mBaseContents['C' & 0x07] ;
         }
-        string percentage = to_string((double)count * 100.0 / mBases);
+        string percentage;
+        if(mBases == 0) {
+            percentage = "0.0";
+        }
+        else {
+            percentage = to_string((double)count * 100.0 / mBases);
+        }
         if(percentage.length()>5)
             percentage = percentage.substr(0,5);
         string name = base + "(" + percentage + "%)"; 
